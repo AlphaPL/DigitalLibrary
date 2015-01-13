@@ -43,5 +43,5 @@ Book.create!(title: "Drach",
               author: author)
 end
 
-Copy.create!(book_id: 1, edition: 1, ISBN: "temp", year_of_print: Time.zone.now.year)
-Copy.create!(book_id: 1, edition: 1, ISBN: "temp", year_of_print: Time.zone.now.year)
+Copy.create!(book_id: 1, edition: 1, ISBN: "0-19-852663-6", year_of_print: Time.zone.now.year)
+Copy.create!(book_id: 1, edition: 1, ISBN: "0-19-852663-6", year_of_print: Time.zone.now.year)
