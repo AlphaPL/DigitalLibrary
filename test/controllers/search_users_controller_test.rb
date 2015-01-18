@@ -1,7 +1,16 @@
 require 'test_helper'
 
 class SearchUsersControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def setup
+    User.tire.index.delete
+    User.import
+    User.tire.index.refresh
+  end
+
+  test "should get contact" do
+    get :search, :q => 'Arek'
+    assert_response :success
+  end
+  
 end

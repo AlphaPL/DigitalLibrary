@@ -10,7 +10,7 @@ class AccountActivationsController < ApplicationController
       redirect_to user_path(params[:id])
     end
   end
-
+  
   def admin_user
     redirect_to users_path unless logged_in? && current_user.admin?
   end

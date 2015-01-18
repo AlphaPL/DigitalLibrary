@@ -81,4 +81,6 @@ class User < ActiveRecord::Base
     end
 
 end
+User.tire.index.delete
 User.import
+User.tire.index.refresh

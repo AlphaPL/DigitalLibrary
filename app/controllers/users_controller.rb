@@ -3,6 +3,7 @@ class UsersController < ApplicationController
                                         :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :index]
+  before_action :can_see,        only: [:show]
   
   def new
     @user = User.new
@@ -49,10 +50,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def admin_user
-    redirect_to(root_url) unless logged_in? && current_user.admin?
-  end
-  
   def following
     @title = "Following"
     @user  = User.find(params[:id])
@@ -77,6 +74,14 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user
+    end
+
+    def can_see
+      correct_user || admin_user
+    end
+
+    def admin_user
+      redirect_to(root_url) unless logged_in? && current_user.admin?
     end
     
 end
