@@ -5,12 +5,24 @@
 		 <input type="button" value="Activate" class="btn btn-primary marginally_left"/>
 	  <% end %>
   <% end %>
-  <aside class="col-md-4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+
 </div>
+
+<table class="show_book_table center">
+    <tr>
+      <td> Cover: </td>
+      <td>
+        <%= gravatar_for @user %>
+      </td>
+    </tr>
+    <tr>
+      <td  class="data"> <strong> Name: </strong> </td> <td  class="data"> <%= "#{@user.name} #{@user.surname}" %> </td>
+    </tr>
+    <tr>
+      <td  class="data"> <strong> Pesel: </strong> </td> <td  class="data">  <%= @user.pesel %> </td>
+    </tr>
+
+    <tr> 
+    <td  class="data"> <strong> Email: </strong> </td> <td  class="data">  <%= @user.email %> </td>
+    </tr>
+</table>

@@ -3,23 +3,26 @@
           <td class="data"> <%= copy.edition %></td> 
           <td class="data"> <%= copy.year_of_print %></td> 
           <td class="data"> <%= how_many_orders_of(copy) %> 
-
           <% if logged_in? && current_user.borrow?(copy) %>
-            <span> You are <%= position_in_line_of(current_user, copy) %> in line </span> </td> 
+            <span> You are <%= position_in_line_of(current_user, copy) %> in line </span> 
+          </td> 
           <% end %>
           <td class="data">
           <% if Possession.where(borrowed_id: copy.id).length != 0 %>
             <% if Possession.where(borrowed_id: copy.id).first.specifier == "active" %>
              <span> Till <%= estimated_return_time_of(copy) %> </span> 
+             <% if current_user.admin? %>
+              <span> Borrowed by </span>
+              <%= render 'users/user', :user => User.find(Possession.where(borrowed_id: copy.id).first.borrower_id) %> 
+             <% end %>
             <% else %>
              <span> Available for pickup for top order. </span> 
             <% end %>
           <% else %>
             <span> Available to order and pickup. </span> 
           <% end %>
-
           </td>
-          <td class="actions">
+          <td class="actions" style="width:30%;">
             <% if logged_in? %>
               <% if current_user.admin? %>
                 <%= link_to edit_copy_path(copy) do %>
@@ -28,12 +31,8 @@
                 <%= link_to copy_path(copy), :method => :delete do %>
                   <input type="button" value="Delete" class="btn btn-primary marginally_left"/>
                 <% end %>
-                <% if how_many_orders_of(copy) > 0 %>
-                  <%= link_to edit_possession_path(Possession.where(borrowed_id: copy.id).first), :method => :get do %>
-                    <input type="button" value=<%= top_action(copy) %> class="btn btn-primary unBorrow"/>
-                  <% end %>
-                <% end %>
-              <% end %>
+          </td>
+            <td style="border-right: none;border-left: none">
               <% if not current_user.borrow?(copy) %>
                 <%= form_for(current_user.borrower_relationships.build) do |f| %>
                     <div><%= hidden_field_tag :borrowed_id, copy.id %></div>
@@ -46,6 +45,16 @@
                   <%= f.submit "Unorder", class: "btn unOrder" %>
                 <% end %>
               <% end %>
-            <% end %>
-          </td>
+            </td>
+
+              <% if how_many_orders_of(copy) > 0 %>
+                <td style="border-right: none;">
+                  <%= link_to edit_possession_path(Possession.where(borrowed_id: copy.id).first), :method => :get do %>
+                    <input type="button" value=<%= top_action(copy) %> class="btn btn-primary unBorrow"/>
+                  <% end %>
+                <% end %>
+                </td>
+              <% end %>
+
+          <% end %>
 </tr>

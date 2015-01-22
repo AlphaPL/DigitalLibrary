@@ -18,7 +18,7 @@ class CopiesController < ApplicationController
     if @copy.save
       redirect_to @book
     else
-      render 'new'
+      render 'new', :locals => {:id => params[:copy][:book_id]}
     end
   end
 

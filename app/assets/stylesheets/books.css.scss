@@ -30,6 +30,7 @@
 	padding-top: 20px;
 	margin-left: 10px;
 	border: solid 2px;
+    background-color: white;
 }
 
 a:hover, a:visited, a:active, a:link {
@@ -42,11 +43,19 @@ a:hover, a:visited, a:active, a:link {
 }
 
 .show_book_table {
+    background-color: white;
+    border: solid 2px;
 	text-align: center;
-	border: 2px solid;
-	border-radius: 30px;
+    table-layout: fixed;
 }
 
+
+.show_synopsis {
+    background-color: white;
+    table-layout: fixed;
+	border-radius: 10px;
+	padding-left: 10px;
+}
 
 .synopsis_text {
 	margin-left: 20px;
@@ -67,12 +76,12 @@ table.center {
 }
 
 table.copies {
+    background-color: white;
 	width: 100%;
 }
 
 .data{
 	text-align: center;
-	border: solid 2px;
 }
 
 .marginally_top {
@@ -101,14 +110,11 @@ div.pagination {
 }
 
 .new_possession {
-	display: inline;
-	float: left;
-	margin-right:10px;
+	margin: 0; padding: 0; display: inline;
 }
 
 .edit_possession {
 	display: inline;
-	float: left;
 	margin-right:10px;
 	font: 2px;
 }

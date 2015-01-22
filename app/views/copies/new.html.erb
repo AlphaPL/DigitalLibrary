@@ -16,7 +16,7 @@
       <%= f.label :year_of_print %>
       <%= f.select :year_of_print,  (Time.zone.now.year - 150)..(Time.zone.now.year) %>
 
-      <%= f.hidden_field :book_id, :value => params[:id] %>
+      <%= f.hidden_field :book_id, :value => params[:id] ? params[:id] : params[:copy][:book_id] %>
 
       <%= f.submit "Save new copy", class: "btn btn-primary" %>
     <% end %>
