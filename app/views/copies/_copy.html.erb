@@ -12,8 +12,7 @@
             <% if Possession.where(borrowed_id: copy.id).first.specifier == "active" %>
              <span> Till <%= estimated_return_time_of(copy) %> </span> 
              <% if current_user.admin? %>
-              <span> Borrowed by </span>
-              <%= render 'users/user', :user => User.find(Possession.where(borrowed_id: copy.id).first.borrower_id) %> 
+              <span> Borrowed by  <%= get_person_who_borrowed(copy.id) %> </span>
              <% end %>
             <% else %>
              <span> Available for pickup for top order. </span> 
@@ -23,7 +22,7 @@
           <% end %>
           </td>
           <td class="actions" style="width:30%;">
-            <% if logged_in? %>
+          <% if logged_in? %>
               <% if current_user.admin? %>
                 <%= link_to edit_copy_path(copy) do %>
                   <input type="button" value="Edit" class="btn btn-primary marginally_left"/>
@@ -31,6 +30,7 @@
                 <%= link_to copy_path(copy), :method => :delete do %>
                   <input type="button" value="Delete" class="btn btn-primary marginally_left"/>
                 <% end %>
+              <% end %>
           </td>
             <td style="border-right: none;border-left: none">
               <% if not current_user.borrow?(copy) %>
@@ -45,16 +45,14 @@
                   <%= f.submit "Unorder", class: "btn unOrder" %>
                 <% end %>
               <% end %>
-            </td>
+              </td>
 
-              <% if how_many_orders_of(copy) > 0 %>
+              <% if how_many_orders_of(copy) > 0 && current_user.admin? %>
                 <td style="border-right: none;">
                   <%= link_to edit_possession_path(Possession.where(borrowed_id: copy.id).first), :method => :get do %>
                     <input type="button" value=<%= top_action(copy) %> class="btn btn-primary unBorrow"/>
                   <% end %>
-                <% end %>
-                </td>
               <% end %>
-
+                </td>
           <% end %>
 </tr>

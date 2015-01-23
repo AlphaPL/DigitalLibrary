@@ -7,7 +7,7 @@ class AccountActivationsController < ApplicationController
     if user && !user.activated?
       user.update_attribute(:activated,    true)
       flash[:success] = "Account activated!"
-      redirect_to user_path(params[:id])
+      redirect_to users_path
     end
   end
   
