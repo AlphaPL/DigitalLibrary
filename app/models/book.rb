@@ -1,7 +1,5 @@
 class Book < ActiveRecord::Base
 
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
   mount_uploader :picture, PictureUploader
   has_many :copies, dependent: :destroy
   belongs_to :genre

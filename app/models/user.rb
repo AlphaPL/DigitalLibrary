@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
