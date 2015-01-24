@@ -11,4 +11,4 @@ class Book < ActiveRecord::Base
 
 end
 
-
+Book.import
