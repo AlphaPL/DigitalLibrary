@@ -57,7 +57,7 @@ before_action :admin_user,     only: [:new, :update, :edit, :create, :destroy]
     end
   
     def book_params
-      params.require(:book).permit(:title, :author, :amount, :synopsis, :picture)
+      params.require(:book).permit(:title, :author, :amount, :synopsis, :picture, :genre_id)
     end
 
 end
