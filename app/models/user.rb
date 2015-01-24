@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   validates :name,  presence: true, length: { maximum: 50 }

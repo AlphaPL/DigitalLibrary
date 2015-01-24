@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
-
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   mount_uploader :picture, PictureUploader
   has_many :copies, dependent: :destroy
   belongs_to :genre
@@ -9,3 +10,5 @@ class Book < ActiveRecord::Base
   validates :genre_id, presence:true
 
 end
+
+
