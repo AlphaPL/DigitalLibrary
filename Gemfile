@@ -21,8 +21,6 @@ gem 'elasticsearch-rails'
 gem "tabs_on_rails"
 gem "tire"
 gem 'isbn_validation'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
 gem 'bonsai-elasticsearch-rails'
 
 group :development, :test do
