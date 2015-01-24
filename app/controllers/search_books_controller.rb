@@ -15,7 +15,7 @@ class SearchBooksController < ApplicationController
       if use_genre_in_query?(genre)
         @books = Book.where(genre_id: genre).paginate(page: params[:page], :per_page => 15)
       else
-        @books == Book.all.paginate(page: params[:page], :per_page => 15)
+        @books = Book.all.paginate(page: params[:page], :per_page => 15)
       end
     end
   end

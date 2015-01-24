@@ -77,10 +77,11 @@ class UsersController < ApplicationController
     end
 
     def can_see
-      correct_user || admin_user
+       logged_in? && ( current_user.admin? || current_user.id == params[:id])
     end
 
     def admin_user
+      puts "I"
       redirect_to(root_url) unless logged_in? && current_user.admin?
     end
     

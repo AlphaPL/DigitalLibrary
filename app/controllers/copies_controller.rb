@@ -4,7 +4,7 @@ class CopiesController < ApplicationController
   
   def edit
     @copy = Copy.find(params[:id])
-    @book = Book.find(@copy.book_id)
+    @book = @copy.book
   end
 
   def new
@@ -14,7 +14,7 @@ class CopiesController < ApplicationController
 
   def create
     @copy = Copy.new(copy_params)
-    @book = Book.find(params[:copy][:book_id])
+    @book = @copy.book
     if @copy.save
       redirect_to @book
     else
@@ -24,7 +24,7 @@ class CopiesController < ApplicationController
 
   def destroy
     @copy = Copy.find(params[:id])
-    @book = Book.find(@copy.book_id)
+    @book = @copy.book
     @copy.destroy
     flash[:success] = "Copy deleted"
     redirect_to @book
@@ -32,7 +32,7 @@ class CopiesController < ApplicationController
 
   def update
     @copy = Copy.find(params[:id])
-    @book = Book.find(@copy.book_id)
+    @book = @copy.book
     if @copy.update_attributes(copy_params)
       flash[:success] = "Copy updated"
       redirect_to @book

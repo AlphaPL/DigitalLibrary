@@ -17,8 +17,8 @@ before_action :admin_user,     only: [:new, :update, :edit, :create, :destroy]
 
   def show
     @book = Book.find(params[:id])
-    @user = User.find(current_user.id) if logged_in?
-    @copies = Copy.where(book_id: params[:id]).paginate(page: params[:page], :per_page => 30)
+    @user = current_user.id if logged_in?
+    @copies = @book.copies.paginate(page: params[:page], :per_page => 30)
   end
 
   def update
