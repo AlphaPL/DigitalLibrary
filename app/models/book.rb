@@ -11,6 +11,7 @@ class Book < ActiveRecord::Base
   validates :genre_id, presence:true
 
 end
-Book.tire.index.delete
+
+Book.index.create
 Book.import
 Book.tire.index.refresh
