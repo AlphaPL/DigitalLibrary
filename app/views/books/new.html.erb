@@ -15,7 +15,8 @@
       <%= f.label :synopsis %>
       <%= f.text_area :synopsis, class: 'form-control' %>
 
-      <%= select_tag "genre_id", options_from_collection_for_select(get_genres, "id", "name") %>
+      <%= f.label :synopsis %>
+      <%= f.select_tag :genre_id, options_from_collection_for_select(get_genres, "id", "name") %>
 
       <%= f.label :picture %>
       <span class="picture">
