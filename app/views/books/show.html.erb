@@ -13,7 +13,7 @@
     <tr>
       <td> Cover: </td>
       <td>
-            <%= image_tag book.picture.url if @book.picture? %>
+            <%= image_tag @book.picture.url if @book.picture? %>
             <%= image_tag "temp.jpg" if !@book.picture? %>
       </td>
     </tr>
