@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PESEL_REGEX = /\d{9}/i
   validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX }
+                    format: { with: VALID_EMAIL_REGEX }, uniqueness: true
   validates :pesel, presence: true,
                     format: { with: VALID_PESEL_REGEX }
   has_secure_password
