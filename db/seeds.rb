@@ -1,6 +1,6 @@
 User.create!(name:  "Example",
              surname: "User",
-             email: "example@railstutorial.org",
+             email: "example@wp.org",
              password:              "foobar",
              password_confirmation: "foobar",
              pesel: "93032213997",
@@ -9,7 +9,7 @@ User.create!(name:  "Example",
 
 99.times do |n|
   name = Faker::Name.name.split(' ')
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@wp.org"
   password = "password"
   User.create!(name:  name[0],
                email: email,
@@ -22,6 +22,12 @@ end
 
 Genre.create!(name: "Drama")
 Genre.create!(name: "Biography")
+Genre.create!(name: "History")
+Genre.create!(name: "Lifestyle")
+Genre.create!(name: "IT")
+Genre.create!(name: "Adventure")
+Genre.create!(name: "Comedy")
+Genre.create!(name: "Interview")
 
 users = User.all
 user  = users.first
